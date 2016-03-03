@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.test.mock.MockContext;
 
 import com.firstsputnik.androidjokelibrary.JokeActivity;
 import com.firstsputnik.backend.myApi.MyApi;
@@ -53,7 +54,7 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if (context != null) {
+        if (!(context instanceof MockContext)) {
             Intent intent = new Intent(context, JokeActivity.class);
             intent.putExtra("Joke", result);
             context.startActivity(intent);
