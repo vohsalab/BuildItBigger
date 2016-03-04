@@ -34,11 +34,12 @@ dependencies {
     compile project(':jokerlib')
     // Added for AdMob
     compile project(':androidjokelibrary')
-    compile 'com.android.support:appcompat-v7:23.2.0'
     freeCompile 'com.google.android.gms:play-services-ads:8.4.0'
     compile project(path: ':jokebackend', configuration: 'android-endpoints')
-    androidTestCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support:support-annotations:23.2.0'
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test:rules:0.4.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+
 }

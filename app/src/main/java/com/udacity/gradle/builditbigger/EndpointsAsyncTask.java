@@ -32,9 +32,11 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        pg = new ProgressDialog(context);
-        this.pg.setMessage(context.getString(R.string.joke_loading));
-        this.pg.show();
+        if (!(context instanceof MockContext)) {
+            pg = new ProgressDialog(context);
+            this.pg.setMessage(context.getString(R.string.joke_loading));
+            this.pg.show();
+        }
     }
 
     @Override
@@ -69,10 +71,11 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if (pg.isShowing()) {
-            pg.dismiss();
-        }
+
         if (!(context instanceof MockContext)) {
+            if (pg.isShowing()) {
+                pg.dismiss();
+            }
             Intent intent = new Intent(context, JokeActivity.class);
             intent.putExtra("Joke", result);
             context.startActivity(intent);

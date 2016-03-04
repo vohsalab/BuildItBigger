@@ -17,7 +17,7 @@ public class ApplicationTest {
     public void tellJoke() {
         String result = "";
         Context context = new MockContext();
-        EndpointsAsyncTask task = new EndpointsAsyncTask();
+        EndpointsAsyncTask task = new EndpointsAsyncTask(context);
         task.execute(context);
         try {
             result = task.get();

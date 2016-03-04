@@ -14,5 +14,19 @@ allprojects {
     repositories {
         jcenter()
     }
+
+}
+
+task runAppEngine(dependsOn: [':jokebackend:appengineRun', ':app:connectedCheck', ':jokebackend:appengineStop']) {
+
+    project(':jokebackend').afterEvaluate { jokebackend ->
+        jokebackend.extensions.appengine.daemon = true
+    }
+
+    tasks.getByPath(':app:connectedCheck').mustRunAfter ':jokebackend:appengineRun'
+    tasks.getByPath(':jokebackend:appengineStop').mustRunAfter ':app:connectedCheck'
+
+
+
 }
 
